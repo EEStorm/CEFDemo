@@ -1,18 +1,39 @@
 //
-//  SocialManager.m
+//  CEFSocialService.m
 //  Authentication
 //
 //  Created by zhangDongdong on 2018/1/10.
 //  Copyright © 2018年 micorosoft. All rights reserved.
 //
 
-#import "SocialManager.h"
+#import "CEFSocialService.h"
 
-@implementation SocialManager
+@implementation CEFSocialService
 
-static SocialManager *_instance;
+static CEFSocialService *_instance;
 
--(void)setPlaform:(Platform)platform appkey:(NSString *)appkey appSecret:(NSString *)appSecret redirectURL:(NSString *)redirectURL{
+-(void)initWithWeChatKey:(NSString *)wechatAppkey wechatSecret:(NSString *)wechatSecret wechatRedictUrl:(NSString *)wechatRedictUrl QQKey:(NSString *)QQAppkey QQSecret:(NSString *)QQSecret QQRedictUrl:(NSString *)QQRedictUrl WeiBoKey:(NSString *)WeiBoAppkey WeiBoSecret:(NSString *)WeiBoSecret WeiBoRedictUrl:(NSString *)WeiBoRedictUrl{
+    
+    self.wechatAppkey = wechatAppkey;
+    self.wechatSecret = wechatSecret;
+    self.qqAppkey = QQAppkey;
+    self.qqSecret = QQSecret;
+    self.weiboAppkey = WeiBoAppkey;
+    self.weiboSecret = WeiBoSecret;
+    
+}
+
+-(void)registerAuthenticationWithEID:(NSString *)EID delegate:(id<CEFApiDelegate>)delegate{
+    
+    [[CEFSocialService defaultManager] setPlaform:wechat appkey:self.wechatAppkey appSecret:self.wechatSecret redirectURL:nil withEID:EID];
+    [[CEFSocialService defaultManager] setPlaform:weibo appkey:self.weiboAppkey appSecret:self.weiboSecret redirectURL:@"" withEID:EID];
+    [[CEFSocialService defaultManager] setPlaform:QQ appkey:self.qqAppkey appSecret:self.qqSecret redirectURL:@"" withEID:EID];
+    
+    self.CEFApiDel = delegate;
+}
+
+
+-(void)setPlaform:(Platform)platform appkey:(NSString *)appkey appSecret:(NSString *)appSecret redirectURL:(NSString *)redirectURL withEID:(NSString *)EID{
     
     if (platform == wechat) {
         
@@ -41,7 +62,7 @@ static SocialManager *_instance;
     
 }
 
--(void)getUserInfoWithPlatform:(Platform)platform completion:(Completion)completion {
+-(void)loginWithPlatform:(Platform)platform completion:(SocialCompletion)completion {
     
     if (platform == wechat) {
         
@@ -60,6 +81,7 @@ static SocialManager *_instance;
 }
 
 -(BOOL)handleOpenURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
+    
     
     if ([options[UIApplicationOpenURLOptionsSourceApplicationKey] isEqualToString:@"com.sina.weibo"]) {
         NSLog(@"新浪微博~");
@@ -88,14 +110,7 @@ static SocialManager *_instance;
 
 +(instancetype)allocWithZone:(struct _NSZone *)zone
 {
-    //    @synchronized (self) {
-    //        // 为了防止多线程同时访问对象，造成多次分配内存空间，所以要加上线程锁
-    //        if (_instance == nil) {
-    //            _instance = [super allocWithZone:zone];
-    //        }
-    //        return _instance;
-    //    }
-    // 也可以使用一次性代码
+    
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         if (_instance == nil) {
@@ -120,3 +135,4 @@ static SocialManager *_instance;
     return _instance;
 }
 @end
+

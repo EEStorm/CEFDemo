@@ -7,6 +7,9 @@
 //
 
 #import "WechatManager.h"
+#import "CEFResponse.h"
+#import "CEFServiceManager.h"
+#import "CEFSocialService.h"
 
 @implementation WechatManager
 
@@ -22,20 +25,20 @@
         
         NSString *accessToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_ACCESS_TOKEN"];
         NSString *openID = [[NSUserDefaults standardUserDefaults] objectForKey:@"WX_OPEN_ID"];
-       
-//        if (accessToken && openID) {
-//
-//            [self wechatRefreshToken:appkey];
-//
-//        }else {
         
-            [self wechatLogin:appkey];
-//        }
+        //        if (accessToken && openID) {
+        //
+        //            [self wechatRefreshToken:appkey];
+        //
+        //        }else {
+        
+        [self wechatLogin:appkey];
+        //        }
         
     }else{
         //把微信登录的按钮隐藏掉。
     }
-} 
+}
 
 -(void)wechatRefreshToken:(NSString *)appkey{
     
@@ -60,7 +63,7 @@
                 
                 if (refreshToken) {
                     // 更新access_token、refresh_token、open_id
-                     [self requestUserInfoByToken:accessToken andOpenid:openId];
+                    [self requestUserInfoByToken:accessToken andOpenid:openId];
                     
                     if (accessToken && (![accessToken isEqual: @""])&& openId && ![openId isEqual: @""]) {
                         
@@ -109,6 +112,14 @@
      WXErrCodeUnsupport  = -5,   微信不支持
      };
      */
+    
+    
+    CEFResponse *cefResponse = [[CEFResponse alloc]init];
+    cefResponse.errCode = resp.errCode;
+    cefResponse.errStr = resp.errStr;
+    cefResponse.type = resp.type;
+    [CEFSocialManager.CEFApiDel onResopnse:cefResponse];
+    
     if ([resp isKindOfClass:[SendAuthResp class]]) {   //授权登录的类。
         if (resp.errCode == 0) {  //成功。
             //这里处理回调的方法 。 通过代理吧对应的登录消息传送过去。
@@ -126,7 +137,7 @@
     
 }
 
-- (void)loginSuccessByCode:(NSString *)code { 
+- (void)loginSuccessByCode:(NSString *)code {
     
     NSLog(@"code %@",code);
     __weak typeof(*&self) weakSelf = self;
@@ -159,13 +170,13 @@
                     
                     [[NSUserDefaults standardUserDefaults]synchronize];
                 }
-//
+                //
                 //                [self getWechatUserInfoWithAccessToken:accessToken openId:openId];
                 [weakSelf requestUserInfoByToken:accessToken andOpenid:openId];
             }
         });
     });
-
+    
 }
 
 
@@ -187,13 +198,12 @@
                                                                     options:NSJSONReadingMutableContainers error:nil];
                 
                 self.result = dic;
-               self.completion(self.result,self.error);
-//                NSLog(@"%@",dic);
-//                NSString *openId = [dic objectForKey:@"openid"];
-//                NSString *memNickName = [dic objectForKey:@"nickname"];
-//                NSString *memSex = [dic objectForKey:@"sex"];
                 
-                //                [self loginWithOpenId:openId memNickName:memNickName memSex:memSex];
+                [[NSUserDefaults standardUserDefaults]setBool:true forKey:@"WECHATLOGIN"];
+                [[NSUserDefaults standardUserDefaults]setObject:[dic objectForKey:@"nickname"] forKey:@"NICKNAME"];
+                
+                self.completion(self.result,self.error);
+                
             }
         });
         
@@ -201,8 +211,9 @@
     
 }
 
-- (void)shareSuccessByCode:(int)code { 
+- (void)shareSuccessByCode:(int)code {
     
 }
 
 @end
+

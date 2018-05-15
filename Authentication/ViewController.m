@@ -28,16 +28,16 @@
 }
 - (IBAction)wechatbtn:(id)sender {
     
-    [[SocialManager defaultManager]getUserInfoWithPlatform:wechat completion:^(NSDictionary *result, NSInteger *error) {
+    [[CEFSocialService defaultManager]loginWithPlatform:wechat completion:^(NSDictionary *result, NSInteger *error) {
         
-         NSLog(@"%@",result);
-
+        NSLog(@"%@",result);
+        
     }];
     
 }
 - (IBAction)weibobtn:(id)sender {
     
-    [[SocialManager defaultManager]getUserInfoWithPlatform:weibo completion:^(NSDictionary *result, NSInteger *error) {
+    [[CEFSocialService defaultManager]loginWithPlatform:weibo completion:^(NSDictionary *result, NSInteger *error) {
         
         NSLog(@"%@",result);
         
@@ -45,7 +45,7 @@
 }
 - (IBAction)QQLoginbtn:(id)sender {
     
-    [[SocialManager defaultManager]getUserInfoWithPlatform:QQ completion:^(NSDictionary *result, NSInteger *error) {
+    [[CEFSocialService defaultManager]loginWithPlatform:QQ completion:^(NSDictionary *result, NSInteger *error) {
         
         NSLog(@"%@",result);
         

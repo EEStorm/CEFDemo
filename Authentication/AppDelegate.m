@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 #import "WXApi.h"
 #import "WeiboSDK.h"
-#import "SocialManager.h"
+#import "CEFSocialService.h"
+#import "CEFServiceManager.h"
 
 //微信开发者ID
 #define URL_APPID @"wx0a6553c087c9e3ea"
@@ -21,7 +22,7 @@
 #define QQ_APPID @"1105567034"
 #define QQ_SECRET @"i9u9zTaunPX7JIzM"
 
-@interface AppDelegate ()<TencentSessionDelegate>
+@interface AppDelegate ()<CEFApiDelegate>
 
 @end
 
@@ -31,11 +32,18 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
-    [[SocialManager defaultManager] setPlaform:wechat appkey:URL_APPID appSecret:URL_SECRET redirectURL:nil];
+    [CEFSocialManager initWithWeChatKey:URL_APPID wechatSecret:URL_SECRET wechatRedictUrl:nil QQKey:QQ_APPID QQSecret:QQ_SECRET QQRedictUrl:nil
+        WeiBoKey:IFM_SinaAPPKey WeiBoSecret:IFM_SinaAppSecret WeiBoRedictUrl:nil];
     
-    [[SocialManager defaultManager] setPlaform:weibo appkey:IFM_SinaAPPKey appSecret:IFM_SinaAppSecret redirectURL:@"http://www.baidu.com"];
-
-    [[SocialManager defaultManager] setPlaform:QQ appkey:QQ_APPID appSecret:QQ_SECRET redirectURL:@"http://com.infomedia.p3kapp"];
+    NSString *EID = [[NSUserDefaults standardUserDefaults] objectForKey:@"CUSTOM_EID"];
+    
+    if (!EID) {
+        EID = [CEFServiceManager createEIDwithTags:@[@"Beijing"] customId:@"storm"];
+        [[NSUserDefaults standardUserDefaults]setObject:EID forKey:@"CUSTOM_EID"];
+    }
+    
+    
+    [CEFSocialManager registerAuthenticationWithEID:EID delegate:self];
     
     return YES;
 }
@@ -43,11 +51,14 @@
 -(BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString *,id> *)options{
 
     
-    return [[SocialManager defaultManager] handleOpenURL:url options:options];
+    return [CEFSocialManager handleOpenURL:url options:options];
 
     return YES;
 }
 
+-(void)onResopnse:(CEFResponse *)CEFResponse {
+    
+}
 //- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation{
 //    return [TencentOAuth HandleOpenURL:url];
 //}
@@ -85,6 +96,7 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
 
 
 @end

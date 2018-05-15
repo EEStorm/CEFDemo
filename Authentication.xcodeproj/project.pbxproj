@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A7CD5E120A93B6500F8A0D9 /* CEFResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7CD5E020A93B6500F8A0D9 /* CEFResponse.m */; };
+		4A7CD5E420A93C9500F8A0D9 /* CEFServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A7CD5E320A93C9500F8A0D9 /* CEFServiceManager.m */; };
 		4ACC66F0200358790087D995 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC66EF200358790087D995 /* AppDelegate.m */; };
 		4ACC66F3200358790087D995 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC66F2200358790087D995 /* ViewController.m */; };
 		4ACC66F6200358790087D995 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4ACC66F4200358790087D995 /* Main.storyboard */; };
@@ -34,13 +36,17 @@
 		4ACC673E2004801D0087D995 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACC673D2004801D0087D995 /* Photos.framework */; };
 		4ACC67432004CB8A0087D995 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACC67422004CB8A0087D995 /* TencentOpenAPI.framework */; };
 		4ACC67452004CBE60087D995 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACC67442004CBE60087D995 /* AssetsLibrary.framework */; };
-		4ACC67482005DD540087D995 /* SocialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC67472005DD540087D995 /* SocialManager.m */; };
+		4ACC67482005DD540087D995 /* CEFSocialService.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC67472005DD540087D995 /* CEFSocialService.m */; };
 		4ACC674B2005E3410087D995 /* WechatManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC674A2005E3410087D995 /* WechatManager.m */; };
 		4ACC674E20060DB70087D995 /* WeiboManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC674D20060DB70087D995 /* WeiboManager.m */; };
 		4ACC675120061F0C0087D995 /* QQManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4ACC675020061F0C0087D995 /* QQManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4A7CD5DF20A93B6500F8A0D9 /* CEFResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEFResponse.h; sourceTree = "<group>"; };
+		4A7CD5E020A93B6500F8A0D9 /* CEFResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEFResponse.m; sourceTree = "<group>"; };
+		4A7CD5E220A93C9500F8A0D9 /* CEFServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CEFServiceManager.h; sourceTree = "<group>"; };
+		4A7CD5E320A93C9500F8A0D9 /* CEFServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CEFServiceManager.m; sourceTree = "<group>"; };
 		4ACC66EB200358780087D995 /* Authentication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Authentication.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ACC66EE200358790087D995 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4ACC66EF200358790087D995 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,8 +83,8 @@
 		4ACC673D2004801D0087D995 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		4ACC67422004CB8A0087D995 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
 		4ACC67442004CBE60087D995 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		4ACC67462005DD540087D995 /* SocialManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocialManager.h; sourceTree = "<group>"; };
-		4ACC67472005DD540087D995 /* SocialManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocialManager.m; sourceTree = "<group>"; };
+		4ACC67462005DD540087D995 /* CEFSocialService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CEFSocialService.h; sourceTree = "<group>"; };
+		4ACC67472005DD540087D995 /* CEFSocialService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CEFSocialService.m; sourceTree = "<group>"; };
 		4ACC67492005E3410087D995 /* WechatManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WechatManager.h; sourceTree = "<group>"; };
 		4ACC674A2005E3410087D995 /* WechatManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WechatManager.m; sourceTree = "<group>"; };
 		4ACC674C20060DB70087D995 /* WeiboManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeiboManager.h; sourceTree = "<group>"; };
@@ -120,8 +126,10 @@
 		4A9B528920073344008F09B1 /* SocialManager */ = {
 			isa = PBXGroup;
 			children = (
-				4ACC67462005DD540087D995 /* SocialManager.h */,
-				4ACC67472005DD540087D995 /* SocialManager.m */,
+				4A7CD5E220A93C9500F8A0D9 /* CEFServiceManager.h */,
+				4A7CD5E320A93C9500F8A0D9 /* CEFServiceManager.m */,
+				4ACC67462005DD540087D995 /* CEFSocialService.h */,
+				4ACC67472005DD540087D995 /* CEFSocialService.m */,
 				4A9B528A2007335D008F09B1 /* PlatformManager */,
 			);
 			path = SocialManager;
@@ -130,6 +138,8 @@
 		4A9B528A2007335D008F09B1 /* PlatformManager */ = {
 			isa = PBXGroup;
 			children = (
+				4A7CD5DF20A93B6500F8A0D9 /* CEFResponse.h */,
+				4A7CD5E020A93B6500F8A0D9 /* CEFResponse.m */,
 				4ACC67492005E3410087D995 /* WechatManager.h */,
 				4ACC674A2005E3410087D995 /* WechatManager.m */,
 				4ACC674C20060DB70087D995 /* WeiboManager.h */,
@@ -305,10 +315,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4ACC674E20060DB70087D995 /* WeiboManager.m in Sources */,
+				4A7CD5E420A93C9500F8A0D9 /* CEFServiceManager.m in Sources */,
 				4ACC674B2005E3410087D995 /* WechatManager.m in Sources */,
-				4ACC67482005DD540087D995 /* SocialManager.m in Sources */,
+				4ACC67482005DD540087D995 /* CEFSocialService.m in Sources */,
 				4ACC66F3200358790087D995 /* ViewController.m in Sources */,
 				4ACC66FE200358790087D995 /* main.m in Sources */,
+				4A7CD5E120A93B6500F8A0D9 /* CEFResponse.m in Sources */,
 				4ACC675120061F0C0087D995 /* QQManager.m in Sources */,
 				4ACC66F0200358790087D995 /* AppDelegate.m in Sources */,
 			);
